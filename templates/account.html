@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title%}Accounts{% endblock %}
+{% block body %}
+<div>
+<button id="add_acc" onclick="showDiv()"  class="button-23 butto">Add Account</button></div>
+<form id ="form" style="display:none;" action="/accounts" method="POST">
+    <table class="fl-table">
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+
+        </tr>
+        <tr>
+            <td><input type="text" step="0.001" name="username" id="username"></td>
+            <td><input type="password" name="pwd" id="pwd"></td>
+            <td><input class="button-23" type="submit" value="Add Account"></td>
+        </tr>
+    </table>
+
+
+
+
+
+<br>
+<br>
+
+</form>
+
+{% if accounts|length < 1 %}
+    <table class="fl-table">
+            <tr>
+                <th>Nom de Fichier</th>
+                <th>Type</th>
+                <th>Date de dernier modification</th>
+                <th>La taille</th>
+                <th>Storage Class</th>
+                <th>Download</th>
+                <th>Delete</th>
+
+            </tr>
+    </table>
+    <h4 class="center-text">il n'y a pas de données</h4>
+    {% else %}
+        <table class="fl-table">
+             <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Date de creation</th>
+
+                <th>Delete</th>
+
+            </tr>
+            {% for account in accounts %}
+                <tr>
+                    <td>{{account.id}}</td>
+                    <td>{{account.username}}</td>
+                    <td>{{account.date_creation}}</td>
+                    <td>
+                        <a class="button-23" href="/delete-acc/{{account.id}}">Delete</a>
+
+                    </td>
+
+
+
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+
+
+{% endblock %}
+{% block script%}
+function showDiv() {
+   document.getElementById('form').style.display = "block";
+    document.getElementById('add_acc').style.display = "none";
+}
+{% endblock %}

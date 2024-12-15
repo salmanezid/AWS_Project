@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/lock.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{  url_for('static',filename='CSS/style2.css') }}">
+    <link rel="stylesheet" href="{{  url_for('static',filename='CSS/table.css') }}">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" type="image/x-icon" href="{{  url_for('static',filename='CSS/images/radeec-logo.png') }}">
+
+    <!--<title> Drop Down Sidebar Menu | CodingLab </title>-->
+    <!-- Boxiocns CDN Link -->
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      {% block title%}{% endblock %}
+    </title>
+
+   </head>
+<body>
+  <div class="sidebar close">
+
+    <ul class="nav-links dashboard">
+      <li >
+        <a  href="/">
+          <i class='bx bx-grid-alt' >
+          </i>
+          <span class="link_name" >Dashboard</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="/">Dashboard</a></li>
+        </ul>
+      </li>
+
+
+      <li>
+        <a href="/upload">
+          <i class='bx bx-history'></i>
+          <span class="link_name">Upload</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="/upload">Upload</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/accounts">
+          <i class='bx bx-pie-chart-alt-2' ></i>
+          <span class="link_name">Account Manager</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="/accounts">Account Manager</a></li>
+        </ul>
+      </li>
+      <a href="/logout">
+        <div class="logout">
+        </div>
+      </a>
+  </li>
+</ul>
+
+  </div>
+  <section class="home-section">
+    <div class="home-content">
+      <i class='bx bx-menu' ></i>
+      <span class="text">
+        {% block smiya%}{% endblock %}
+
+      </span>
+    </div>
+      {% block body %}{% endblock %}
+
+  </section>
+  
+  <script>
+  let arrow = document.querySelectorAll(".arrow");
+  for (var i = 0; i < arrow.length; i++) {
+    arrow[i].addEventListener("click", (e)=>{
+   let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+   arrowParent.classList.toggle("showMenu");
+    });
+  }
+  let sidebar = document.querySelector(".sidebar");
+  let sidebarBtn = document.querySelector(".bx-menu");
+  console.log(sidebarBtn);
+  sidebarBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("close");
+  });
+    {% block script%}{% endblock %}
+  </script>
+</body>
+</html>

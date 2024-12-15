@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title%}Dashboard{% endblock %}
+{% block body %}
+
+
+{% if data|length < 1 %}
+    <table class="fl-table">
+            <tr>
+                <th>Nom de Fichier</th>
+                <th>Type</th>
+                <th>Date de dernier modification</th>
+                <th>La taille</th>
+                <th>Storage Class</th>
+                <th>Download</th>
+                <th>Delete</th>
+
+            </tr>
+    </table>
+    <h4 class="center-text">il n'y a pas de données</h4>
+    {% else %}
+        <table class="fl-table">
+             <tr>
+                <th>Nom de Fichier</th>
+                <th>Type</th>
+                <th>Date de dernier modification</th>
+                <th>La taille</th>
+                <th>Storage Class</th>
+                <th>Download</th>
+                <th>Delete</th>
+
+            </tr>
+            {% for file in data %}
+                <tr>
+                    <td>{{file['Key']}}</td>
+                    <td>{{file['extention']}}</td>
+                    <td>{{file['LastModified']}}</td>
+                    <td>{{file['Size']}}</td>
+                    <td>{{file['StorageClass']}}</td>
+                    <td>
+                        <a class="button-23" href="/download/{{file['Key']}}">Download</a>
+
+                    </td>
+                    <td>
+                        <a class="button-23" href="/Delete/{{file['Key']}}">Delete</a>
+
+                    </td>
+
+
+
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+
+
+{% endblock %}
